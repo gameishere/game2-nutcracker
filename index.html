@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('sky.jpeg'); /* Adjust the path to your image file */
+            background-image: url('sky.jpeg');
             background-size: cover;
             background-position: center;
             color: #fff;
@@ -22,14 +23,14 @@
         header {
             text-align: center;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            background-color: rgba(0, 0, 0, 0.5);
         }
 
         section {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            background-color: rgba(255, 255, 255, 0.8);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
@@ -40,19 +41,19 @@
             height: 50px;
             margin: 10px;
             border-radius: 50%;
-            background-color: #ffd700; /* Default color for dots (off) */
+            background-color: #ffd700;
             cursor: pointer;
         }
 
         .dot.on {
-            background-color: grey; /* Color for "on" dots */
+            background-color: grey;
         }
 
         #enter-button {
             padding: 10px 20px;
             font-size: 1em;
-            background-color: #333; /* Set button background color as needed */
-            color: #fff; /* Set button text color as needed */
+            background-color: #333;
+            color: #fff;
             border: none;
             cursor: pointer;
             margin-top: 20px;
@@ -61,8 +62,8 @@
         #toggle-all-button {
             padding: 10px 20px;
             font-size: 1em;
-            background-color: #333; /* Set button background color as needed */
-            color: #fff; /* Set button text color as needed */
+            background-color: #333;
+            color: #fff;
             border: none;
             cursor: pointer;
             margin-top: 20px;
@@ -71,7 +72,7 @@
         #obscured-text {
             margin-top: 20px;
             font-size: 1.2em;
-            opacity: 0.5; /* Adjust opacity as needed */
+            opacity: 0.5;
         }
 
         #youtube-video {
@@ -79,9 +80,11 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Next Page Header</h1>
+        <div id="countdown-dec22"></div>
     </header>
 
     <section>
@@ -108,17 +111,39 @@
 
         <!-- YouTube Video -->
         <div id="youtube-video">
-            <!-- Add your YouTube embed code here -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/your_video_id" frameborder="0" allowfullscreen></iframe>
+            <!-- Rick Astley's "Never Gonna Give You Up" Video -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"
+                allowfullscreen></iframe>
         </div>
     </section>
-    
+
     <!-- Beep Sound -->
     <audio id="beep" src="Beep.mp3"></audio>
     <!-- Boop Sound -->
     <audio id="boop" src="Boop.mp3"></audio>
 
     <script>
+        // Countdown Timer for December 22nd
+        const targetDateDec22 = new Date(new Date().getFullYear(), 11, 22).getTime();
+
+        const countdownIntervalDec22 = setInterval(function () {
+            const now = new Date().getTime();
+            const distance = targetDateDec22 - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown-dec22').innerHTML =
+                `Countdown to December 22nd: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+                clearInterval(countdownIntervalDec22);
+                document.getElementById('countdown-dec22').innerHTML = 'EXPIRED';
+            }
+        }, 1000);
+
         // Function to toggle the state of a dot and play beep sound
         function toggleDot(dotNumber) {
             const dot = document.getElementById('dot' + dotNumber);
@@ -132,12 +157,12 @@
             beepSound.currentTime = 0; // Reset the sound to the beginning
             beepSound.play();
         }
-        // Function to play the beep sound
-                function playBoopSound() {
+        // Function to play the boop sound
+        function playBoopSound() {
             const boopSound = document.getElementById('boop');
             boopSound.currentTime = 0; // Reset the sound to the beginning
             boopSound.play();
-                }
+        }
         // Function to toggle the state of all dots
         function toggleAllDots() {
             for (let i = 1; i <= 10; i++) {
@@ -170,4 +195,5 @@
         }
     </script>
 </body>
+
 </html>
