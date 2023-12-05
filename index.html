@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('sky.jpeg'); /* Adjust the path to your image file */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            border-radius: 50%;
+            background-color: #ffd700; /* Default color for dots (off) */
+            cursor: pointer;
+        }
+
+        .dot.on {
+            background-color: grey; /* Color for "on" dots */
+        }
+
+        #enter-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #333; /* Set button background color as needed */
+            color: #fff; /* Set button text color as needed */
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #toggle-all-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #333; /* Set button background color as needed */
+            color: #fff; /* Set button text color as needed */
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #obscured-text {
+            margin-top: 20px;
+            font-size: 1.2em;
+            opacity: 0.5; /* Adjust opacity as needed */
+        }
+
+        #youtube-video {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Next Page Header</h1>
+    </header>
+
+    <section>
+        <!-- Large Dots -->
+        <div class="dot on" id="dot1" onclick="toggleDot(1)"></div>
+        <div class="dot on" id="dot2" onclick="toggleDot(2)"></div>
+        <div class="dot on" id="dot3" onclick="toggleDot(3)"></div>
+        <div class="dot on" id="dot4" onclick="toggleDot(4)"></div>
+        <div class="dot on" id="dot5" onclick="toggleDot(5)"></div>
+        <div class="dot on" id="dot6" onclick="toggleDot(6)"></div>
+        <div class="dot on" id="dot7" onclick="toggleDot(7)"></div>
+        <div class="dot on" id="dot8" onclick="toggleDot(8)"></div>
+        <div class="dot on" id="dot9" onclick="toggleDot(9)"></div>
+        <div class="dot on" id="dot10" onclick="toggleDot(10)"></div>
+
+        <!-- Toggle All Button -->
+        <button id="toggle-all-button" onclick="toggleAllDots()">Toggle All</button>
+
+        <!-- Enter Button -->
+        <button id="enter-button" onclick="checkDots()">Enter</button>
+
+        <!-- Obscured Text -->
+        <p id="obscured-text">Some obscured text here...</p>
+
+        <!-- YouTube Video -->
+        <div id="youtube-video">
+            <!-- Add your YouTube embed code here -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/your_video_id" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </section>
+    
+    <!-- Beep Sound -->
+    <audio id="beep" src="Beep.mp3"></audio>
+    <!-- Boop Sound -->
+    <audio id="boop" src="Boop.mp3"></audio>
+
+    <script>
+        // Function to toggle the state of a dot and play beep sound
+        function toggleDot(dotNumber) {
+            const dot = document.getElementById('dot' + dotNumber);
+            dot.classList.toggle('on');
+            playBeepSound();
+        }
+
+        // Function to play the beep sound
+        function playBeepSound() {
+            const beepSound = document.getElementById('beep');
+            beepSound.currentTime = 0; // Reset the sound to the beginning
+            beepSound.play();
+        }
+        // Function to play the beep sound
+                function playBoopSound() {
+            const boopSound = document.getElementById('boop');
+            boopSound.currentTime = 0; // Reset the sound to the beginning
+            boopSound.play();
+                }
+        // Function to toggle the state of all dots
+        function toggleAllDots() {
+            for (let i = 1; i <= 10; i++) {
+                const dot = document.getElementById('dot' + i);
+                dot.classList.toggle('on');
+            }
+            playBoopSound();
+        }
+
+        // Function to check the state of the dots when the Enter button is clicked
+        function checkDots() {
+            // Check the state of each dot (on or off)
+            const dotStates = [];
+            for (let i = 1; i <= 10; i++) {
+                const dot = document.getElementById('dot' + i);
+                const isOn = dot.classList.contains('on');
+                dotStates.push(isOn);
+            }
+
+            // Check if the correct combination is the 2nd dot on and the rest off
+            const isCorrect = dotStates[1] && !dotStates.slice(2).some(state => state);
+
+            // Redirect to the next page if the condition is met
+            if (isCorrect) {
+                // Replace 'nextpage.html' with the actual page URL
+                window.location.href = 'https://gameishere.github.io/nextpage.html';
+            } else {
+                alert('Incorrect combination. Try again.');
+            }
+        }
+    </script>
+</body>
+</html>
