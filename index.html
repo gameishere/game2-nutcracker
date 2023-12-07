@@ -183,7 +183,7 @@
             }
 
             // Check if the correct combination is the 2nd dot on and the rest off
-            const isCorrect = dotStates[1] && !dotStates.slice(2).some(state => state);
+            const isCorrect = dotStates[2] && !dotStates.slice(2).some(state => state);
 
             // Redirect to the next page if the condition is met
             if (isCorrect) {
