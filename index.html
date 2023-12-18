@@ -84,7 +84,7 @@
 <body>
     <header>
         <h1>Next Page Header</h1>
-        <div id="countdown-dec22"></div>
+        <div id="countdown-dec31"></div>
     </header>
 
     <section>
@@ -123,24 +123,24 @@
     <audio id="boop" src="Boop.mp3"></audio>
 
     <script>
-        // Countdown Timer for December 22nd
-        const targetDateDec22 = new Date(new Date().getFullYear(), 11, 22).getTime();
+        // Countdown Timer for December 31st
+        const targetDateDec31 = new Date(new Date().getFullYear(), 11, 31).getTime();
 
-        const countdownIntervalDec22 = setInterval(function () {
+        const countdownIntervalDec31 = setInterval(function () {
             const now = new Date().getTime();
-            const distance = targetDateDec22 - now;
+            const distance = targetDateDec31 - now;
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById('countdown-dec22').innerHTML =
-                `Countdown to December 22nd: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            document.getElementById('countdown-dec31').innerHTML =
+                `Countdown to December 31st: ${days}d ${hours}h ${minutes}m ${seconds}s`;
 
             if (distance < 0) {
-                clearInterval(countdownIntervalDec22);
-                document.getElementById('countdown-dec22').innerHTML = 'EXPIRED';
+                clearInterval(countdownIntervalDec31);
+                document.getElementById('countdown-dec31').innerHTML = 'EXPIRED';
             }
         }, 1000);
 
@@ -157,12 +157,14 @@
             beepSound.currentTime = 0; // Reset the sound to the beginning
             beepSound.play();
         }
+
         // Function to play the boop sound
         function playBoopSound() {
             const boopSound = document.getElementById('boop');
             boopSound.currentTime = 0; // Reset the sound to the beginning
             boopSound.play();
         }
+
         // Function to toggle the state of all dots
         function toggleAllDots() {
             for (let i = 1; i <= 10; i++) {
@@ -183,7 +185,7 @@
             }
 
             // Check if the correct combination is the 2nd dot on and the rest off
-            const isCorrect = dotStates[2] && !dotStates.slice(0,1,3).some(state => state);
+            const isCorrect = dotStates[2] && !dotStates.slice(0, 1, 3).some(state => state);
 
             // Redirect to the next page if the condition is met
             if (isCorrect) {
